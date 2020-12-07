@@ -12,34 +12,36 @@
 </head>
 
 <body>
-  <section class="add">
-    <form class="add-form form">
-      <input class="input input-text" type="text" placeholder="Чем займемся? 🙄">
-      <input class="input input-date" type="date">
-      <input class="input input-time" type="time" value="12:00">
-      <button class="btn btn-add"></button>
-    </form>
-  </section>
-  <section class="todo">
-    <h2 class="todo-title">тебе предстоит</h2>
-    <ul class="todo-list">
-      <li class="todo-item">
+  <div class="left">
+    <section class="add">
+      <form class="add-form form">
+        <input class="input input-text" type="text" placeholder="Чем займемся? 🙄">
+        <button class="btn btn-add"></button>
+      </form>
+    </section>
+    <section class="todo">
+      <h2 class="todo-title">тебе предстоит</h2>
+      <ul class="todo-list">
+      </ul>
+    </section>
+    <section class="todo completed">
+      <h2 class="completed-title">выполнено</h2>
+      <ul class="todo-completed">
+      </ul>
+    </section>
+  </div>
+  <aside class="const-tasks">
+    <h2 class="completed-title">постоянные задачи</h2>
+    <ul class="const-list">
+      <li class="const-item">
         <span class="item-title">Мониторинг банкомата</span>
+        <span class="item-time">В 11:00</span>
         <span class="item-time">В 11:00</span>
         <button class="btn btn-delete"></button>
       </li>
     </ul>
-  </section>
-  <section class="todo completed">
-    <h2 class="completed-title">выполнено</h2>
-    <ul class="todo-completed">
-      <li class="todo-item">
-        <span class="item-title">Мониторинг банкомата</span>
-        <span class="item-time">через 10 мин</span>
-        <button class="btn btn-delete"></button>
-      </li>
-    </ul>
-  </section>
+    <button class="btn btn-add-const" ></button>
+  </aside>
 
   <script src="js/main.js"></script>
 </body>
