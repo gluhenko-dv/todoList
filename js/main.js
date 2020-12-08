@@ -1,9 +1,10 @@
 'use strict';
 
 const inputText = document.querySelector('.input-text'),
-  inputDate = document.querySelector('.input-date'),
+  inputConst = document.querySelector('.title-const'),
   inputTime = document.querySelector('.input-time'),
   addForm = document.querySelector('.add-form'),
+  addConst = document.querySelector('.add-const'),
   todoList = document.querySelector('.todo-list'),
   constList = document.querySelector('.const-list'),
   todoCompleted = document.querySelector('.todo-completed');
@@ -66,20 +67,12 @@ const renderConstList = () => {
     `;
 
     constList.append(li);
-
-    const constCompletedBtn = li;
-    constCompletedBtn.addEventListener('dblclick', () => {
-      item.completed = !item.completed;
-      let json = JSON.stringify(constData);
-      localStorage.constData = json;
-      renderList();
-    });
     const constRemovedBtn = li.querySelector('.btn-delete');
     constRemovedBtn.addEventListener('click', () => {
       constData.splice(constData.indexOf(item), 1);
       let json = JSON.stringify(constData);
       localStorage.constData = json;
-      renderList();
+      renderConstList();
     });
   });
 };
@@ -92,7 +85,7 @@ addForm.addEventListener('submit', (event) => {
     return;
   }
   inputText.style.borderBottom = '1px solid rgb(136, 136, 136)';
-  const randColor = Math.floor(Math.random() * todoItemBackground.length);
+  let randColor = Math.floor(Math.random() * todoItemBackground.length);
   const newTodo = {
     name: inputText.value,
     background: todoItemBackground[randColor],
@@ -103,6 +96,27 @@ addForm.addEventListener('submit', (event) => {
   localStorage.todoData = json;
   renderList();
   addForm.reset();
+});
+
+addConst.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!inputConst.value) {
+    alertAudio.play();
+    inputConst.style.borderBottom = '2px solid red';
+    return;
+  }
+  inputConst.style.borderBottom = '1px solid rgb(136, 136, 136)';
+  let randColor = Math.floor(Math.random() * todoItemBackground.length);
+  const newTodo = {
+    name: inputConst.value,
+    background: todoItemBackground[randColor],
+    completed: false
+  };
+  constData.push(newTodo);
+  let json = JSON.stringify(constData);
+  localStorage.constData = json;
+  renderConstList();
+  addConst.reset();
 });
 
 

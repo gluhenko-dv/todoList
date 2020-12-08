@@ -33,7 +33,7 @@ input {
   width: 20%;
   height: 100%;
   padding: 20px;
-  border-left: 1px solid rgb(136, 136, 136);
+  background: #d8d8d8;
   text-align: center;
 }
 
@@ -64,6 +64,13 @@ input {
   opacity: 1;
 }
 
+.add-const{
+  width: 99%;
+}
+.title-const{
+  padding: 10px;
+  width: 70%;
+}
 .add {
   width: 100%;
   height: 20%;
@@ -107,12 +114,7 @@ input {
   background-image: url('../img/plus.svg');
 }
 .btn-add-const {
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
   background-image: url('../img/plus.svg');
-  width: 50px;
-  height: 50px;
 }
 
 .btn-delete {
@@ -173,6 +175,8 @@ input {
   flex-wrap: wrap;
   opacity: 0.5;
 }
+
+
 
 @media(max-width: 500px) {
   .todo {
