@@ -4,43 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>todoList</title>
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
+  <title>WorkHelper</title>
+  <link rel="stylesheet" href="style/normalize.css">
+  <link rel="stylesheet" href="style/main.css">
 </head>
 
 <body>
-  <div class="left">
-    <section class="add">
-      <form class="add-form form">
-        <input class="input input-text" type="text" placeholder="Чем займемся? 🙄">
-        <button class="btn btn-add"></button>
-      </form>
-    </section>
-    <section class="todo">
-      <h2 class="todo-title">тебе предстоит</h2>
-      <ul class="todo-list">
-      </ul>
-    </section>
-    <section class="todo completed">
-      <h2 class="completed-title">выполнено</h2>
-      <ul class="todo-completed">
-      </ul>
-    </section>
-  </div>
-  <aside class="const-tasks">
-    <h2 class="completed-title">постоянные задачи</h2>
-    <ul class="const-list">
+  <button class="menu-btn"></button>
+  <span class="section-name" >Планировщик</span>
+  <menu class="menu" >
+    <a class="close-btn">&times;</a>
+    <ul class="menu-items" >
+      <li><a href="#todo">Планировщик</a></li>
+      <li><a href="#timer">Таймер</a></li>
+      <li><a href="#password">Менеджер паролей</a></li>
+      <li><a href="#settings">Настройки</a></li>
     </ul>
-    <form class="add-const">
-      <input class="input title-const" type="text" placeholder="Что нам предстоит?">
-      <button class="btn btn-add-const"></button>
-    </form>
-  </aside>
+  </menu>
 
-  <script src="js/main.js"></script>
+  <section class="todo" id="todo">
+    <form class="todo-form">
+      <input class="input todo-input" type="text" placeholder="Что запомнить? 🙄">
+      <button class="btn btn-add"></button>
+    </form>
+  </section>
+
+  <script src="script/main.js"></script>
 </body>
 
 </html>
