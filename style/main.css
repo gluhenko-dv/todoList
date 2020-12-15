@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 body {
   font-family: "Caveat", cursive;
   color: black;
@@ -38,7 +39,7 @@ img{
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,6 +48,7 @@ img{
   transform: translateX(-100%);
   -webkit-transition: 1s;
   transition: 1s;
+  z-index: 999;
 }
 
 .menu-active {
@@ -85,11 +87,12 @@ img{
   border: none;
   background-color: inherit;
   background-image: url("../img/menu.svg");
-  position: fixed;
+  position: absolute;
   left: 15px;
   top: 15px;
-  transition: 0.2s;
-  opacity: 0.7;
+  transition: 0.4s;
+  opacity: 0.5;
+  background-size: cover;
 }
 .menu-btn:hover {
   cursor: pointer;
@@ -98,9 +101,8 @@ img{
 .menu-btn:focus {
   outline: none;
 }
-
 .todo {
-  padding-top: 10px;
+  padding-top: 15px;
   width: 75%;
   min-height: 100vh;
   font-family: "Kelly Slab", cursive;
@@ -111,12 +113,12 @@ img{
   width: 50%;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 20px;
 }
 
-input {
+.input {
   background-color: inherit;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.548);
@@ -130,17 +132,63 @@ input {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   opacity: 0.6;
+  transition: 0.2s;
 }
 .btn:hover {
   cursor: pointer;
   opacity: 1;
+  transform: rotate(90deg);
 }
 .btn-add {
   background-image: url("../img/plus.svg");
 }
+.btn-delete {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background-image: url("../img/delete.svg");
+}
 .todo-input {
-  width: 90%;
+  width: 75%;
+}
+.todo-date{
+  width: 22%;
+  padding: 2px;
 }
 input:focus {
   outline: inherit;
+}
+.todo-wrap{
+  width: 100%;
+  padding-top: 20px;
+}
+.todo-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.todo-item {
+  position: relative;
+  margin: 0 auto;
+  padding: 15px;
+  padding-top: 30px;
+  opacity: 0.8;
+  width: 20%;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  font-family: 'Rubik', sans-serif;
+  font-size: 25px;
+  word-wrap: break-word;
+}
+
+.todo-item:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+.item-date{
+  position: absolute;
+  font-size: 15px;
+  left: 10px;
+  top: 10px;
 }
