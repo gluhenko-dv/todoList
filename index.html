@@ -11,11 +11,11 @@
 
 <body>
   <button class="menu-btn"></button>
-  <span class="section-name" >Планировщик</span>
+  <span class="section-name" >Записная книга</span>
   <menu class="menu" >
     <a class="close-btn">&times;</a>
     <ul class="menu-items" >
-      <li><a href="#todo">Планировщик</a></li>
+      <li><a href="#todo">Записная книга</a></li>
       <li><a href="#todo-completed">Выполнено</a></li>
       <li><a href="#timer">Таймер</a></li>
       <li><a href="#password">Менеджер паролей</a></li>
@@ -26,7 +26,7 @@
   <section class="todo" id="todo">
     <form class="todo-form">
       <input class="input todo-input" type="text" placeholder="Что запомнить? 🙄">
-      <input class="input todo-date" type="date">
+      <input class="input todo-date" type="date" >
       <button class="btn btn-add"></button>
     </form>
     <div class="todo-wrap">
@@ -34,6 +34,12 @@
 
       </ul>
     </div>
+  </section>
+
+  <section class="timer">
+    <form class="add-timer">
+      <input type="time" class="timer-time" value="00:00">
+    </form>
   </section>
 
   <script src="script/main.js"></script>

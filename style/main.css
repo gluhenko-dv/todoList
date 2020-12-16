@@ -192,3 +192,12 @@ input:focus {
   left: 10px;
   top: 10px;
 }
+
+.hide{
+  display: none;
+}
+
+.timer{
+  width: 50%;
+  margin: auto;
+}

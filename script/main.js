@@ -1,29 +1,39 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable arrow-parens */
 "use sctrict";
 window.addEventListener("DOMContentLoaded", () => {
   const toggleMenu = () => {
-    const btnMenu = document.querySelector(".menu-btn"),
-      menu = document.querySelector(".menu"),
-      btnCloseMenu = document.querySelector(".close-btn"),
-      menuItems = menu.querySelectorAll("ul>li");
+    const body = document.querySelector("body"),
+      menu = document.querySelector(".menu");
 
     const handlerMenu = () => {
       menu.classList.toggle("menu-active");
     };
 
-    btnMenu.addEventListener("click", handlerMenu);
-    btnCloseMenu.addEventListener("click", handlerMenu);
-    menuItems.forEach((element) =>
-      element.addEventListener("click", handlerMenu)
-    );
+    body.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target.closest(".menu-btn")) {
+        handlerMenu();
+      } else if (target.closest(".close-btn")) {
+        handlerMenu();
+      } else if (target.closest(".menu-items>li")) {
+        handlerMenu();
+      } else if (
+        !target.closest(".menu-active") &&
+        menu.classList.contains("menu-active")
+      ) {
+        handlerMenu();
+      }
+    });
   };
   toggleMenu();
-  //функция Планировщика задний
+  //функция записной книги
 
   const todoForm = document.querySelector(".todo-form"),
     todoInput = document.querySelector(".todo-input"),
     todoDate = document.querySelector(".todo-date"),
     todoList = document.querySelector(".todo-list");
-  let alertAudio = new Audio();
+  const alertAudio = new Audio();
   alertAudio.src = "../sound/alert.mp3";
 
   let todoLocalData = [];
@@ -37,12 +47,18 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       return hex;
     };
-    const checkDate = () => {
+    //возваращет теушую дату в формате YYYY-MM-DD
+    const requestTodayDate = () => {
       const nowDate = new Date().getDate(),
         nowMonth = new Date().getMonth(),
         nowYear = new Date().getFullYear(),
-        today = `${nowYear}-${nowMonth+1}-${nowDate}`;
-        return today;
+        today = `${nowYear}-${nowMonth + 1}-${nowDate}`;
+      return today;
+    };
+    //сохранение в localStorage
+    const saveLocalStorage = (todoLocalData) => {
+      const json = JSON.stringify(todoLocalData);
+      localStorage.todoLocalData = json;
     };
     //вывод списка заданий на страницу
     const renderTodoList = () => {
@@ -58,35 +74,32 @@ window.addEventListener("DOMContentLoaded", () => {
         li.draggable = true;
         li.style.backgroundColor = item.background;
         li.innerHTML = `
-        <span class="item-title" contenteditable="true">${item.name}</span>
+        <span class="item-title" >${item.name}</span>
         <span class="item-date">${item.date}</span>
         <button class="btn btn-delete"></button>
         `;
-        if(item.date === checkDate() || item.date === ''){
+        if (item.date === requestTodayDate() || item.date === "") {
           if (!item.completed) {
             todoList.append(li);
           }
         }
-
         const todoCompletedBtn = li;
         todoCompletedBtn.addEventListener("dblclick", () => {
           item.completed = !item.completed;
-          let json = JSON.stringify(todoLocalData);
-          localStorage.todoLocalData = json;
+          saveLocalStorage(todoLocalData);
           renderTodoList();
         });
         const todoRemovedBtn = li.querySelector(".btn-delete");
         todoRemovedBtn.addEventListener("click", () => {
           todoLocalData.splice(todoLocalData.indexOf(item), 1);
-          let json = JSON.stringify(todoLocalData);
-          localStorage.todoLocalData = json;
+          saveLocalStorage(todoLocalData);
           renderTodoList();
         });
       });
     };
 
     renderTodoList();
-    checkDate();
+    requestTodayDate();
 
     todoForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -103,11 +116,11 @@ window.addEventListener("DOMContentLoaded", () => {
         completed: false,
       };
       todoLocalData.push(newTodo);
-      const json = JSON.stringify(todoLocalData);
-      localStorage.todoLocalData = json;
-      renderTodoList();
+      saveLocalStorage(todoLocalData);
       todoForm.reset();
+      renderTodoList();
     });
   };
+
   todo();
 });
